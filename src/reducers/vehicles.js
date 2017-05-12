@@ -2,7 +2,6 @@ export const ADD_VEHICLE = 'ADD_VEHICLE'
 
 export const addVehicle = (vehicle) => ({
   type: ADD_VEHICLE,
-  id: Date.now(),
   payload: vehicle
 })
 
@@ -15,8 +14,7 @@ export default function vehicles(state = {}, action) {
     case ADD_VEHICLE:
       return {
         ...state,
-        [action.id]: {
-          id: action.id,
+        [action.payload.placa]: {
           ...action.payload
         }
       }
