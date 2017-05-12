@@ -7,27 +7,24 @@ import {
 import './App.css'
 import HomePage from './containers/Home'
 import AboutPage from './containers/About'
+import VehicleForm from './containers/Vehicle/Form'
 
 const App = () => (
   <Router>
     <div className="container">
       <div className="row">
-        <div className="col-xs-12">
+        <div className="col-md-offset-1 col-md-10 App-header">
           <div>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About</Link></li>
-            </ul>
+            <h1><Link to="/">ContaAzul</Link></h1>
           </div>
         </div>
       </div>
 
       <div className="row">
-        <div className="col-xs-12">
-          <div>
-            <Route exact path="/" component={HomePage}/>
-            <Route path="/about" component={AboutPage}/>
-          </div>
+        <div className="col-md-offset-1 col-md-10">
+          <Route exact path="/" component={HomePage}/>
+          <Route path="/carros/novo" component={VehicleForm}/>
+          <Route path="/sobre" component={AboutPage}/>
         </div>
       </div>
     </div>

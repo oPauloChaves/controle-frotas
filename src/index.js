@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import configStore from './store/configStore'
 import App from './App'
+
+import 'flexboxgrid/dist/flexboxgrid.css'
 import './index.css';
 
 const initialState = {
