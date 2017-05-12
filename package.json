@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://opaulochaves.github.io/controle-frotas/",
   "dependencies": {
+    "flexboxgrid": "^6.3.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
