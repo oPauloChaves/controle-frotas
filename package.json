@@ -1,8 +1,8 @@
 {
   "name": "controle-frotas",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "homepage": "https://opaulochaves.github.io/controle-frotas/",
+  "homepage": "http://opaulochaves.github.io/controle-frotas",
   "dependencies": {
     "flexboxgrid": "^6.3.1",
     "react": "^15.5.4",
@@ -12,7 +12,7 @@
     "redux": "^3.6.0"
   },
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "react-scripts": "1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

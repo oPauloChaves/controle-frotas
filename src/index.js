@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import registerServiceWorker from './registerServiceWorker';
 import configStore from './store/configStore'
 import App from './App'
 
@@ -55,3 +56,5 @@ if (module.hot) {
     render(NextApp)
   })
 }
+
+registerServiceWorker();
