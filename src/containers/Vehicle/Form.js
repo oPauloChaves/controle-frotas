@@ -1,7 +1,76 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import FormGroup from 'react-bootstrap/lib/FormGroup'
+import ControlLabel from 'react-bootstrap/lib/ControlLabel'
+import FormControl from 'react-bootstrap/lib/FormControl'
+import HelpBlock from 'react-bootstrap/lib/HelpBlock'
 // import { addVehicle } from '../../reducers/vehicles'
 
+class Form extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      combustivel: 'Flex',
+      imagem: '',
+      marca: '',
+      modelo: '',
+      placa: '',
+      valor: 0.0
+    }
+
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleInputChange(event) {
+    const target = event.target
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    const name = target.name
+
+    this.setState({
+      [name]: value
+    })
+  }
+
+  getValidationState(input) {
+    const length = this.state[input].length
+    return length == 8 ? '': 'error'
+  }
+
+  handleSubmit(event) {
+    const { dispatch, history } = this.props
+
+    event.preventDefault()
+    // dispatch(addVehicle(this.state))
+    history.push('/')
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <FormGroup
+          controlId="placa"
+          validationState={this.getValidationState('placa')}
+        >
+          <ControlLabel>Placa</ControlLabel>
+          <FormControl
+            type="text"
+            id="placa"
+            name="placa"
+            value={this.state.placa}
+            onChange={this.handleInputChange}
+            placeholder="AAA-9999"
+          />
+          <FormControl.Feedback />
+          <HelpBlock>Validation is based on string length.</HelpBlock>
+        </FormGroup>
+      </form>
+    )
+  }
+}
+
+/*
 class Form extends Component {
   constructor(props) {
     super(props)
@@ -131,5 +200,6 @@ class Form extends Component {
     )
   }
 }
+*/
 
 export default connect()(Form)
