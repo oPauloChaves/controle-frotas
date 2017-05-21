@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Table from 'react-bootstrap/lib/Table'
+import FormActions from './FormActions'
 
 const Row = ({ placa, modelo, marca, imagem, combustivel, valor }) => (
   <tr>
@@ -36,14 +37,7 @@ class Home extends Component {
 
     return (
       <div>
-        <div className="row">
-          <div className="col-md-2">
-            <Link to="/carros/novo">Novo Carro</Link>
-          </div>
-          <div className="col-md-offset-8 col-md-2">
-            Pesquisar: <input type="text" />
-          </div>
-        </div>
+        <FormActions />
         <div className="row">
           <div className="col-md-12">
             <Table bordered hover responsive>
