@@ -1,5 +1,7 @@
 # controle-frotas
 
+### This project is based on [cloudmu/react-redux-starter-kit](https://github.com/cloudmu/react-redux-starter-kit)
+
 ### Run in dev mode
 ```sh
 yarn start

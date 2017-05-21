@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addVehicle } from '../../reducers/vehicles'
+// import { addVehicle } from '../../reducers/vehicles'
 
 class Form extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class Form extends Component {
     const { dispatch, history } = this.props
 
     event.preventDefault()
-    dispatch(addVehicle(this.state))
+    // dispatch(addVehicle(this.state))
     history.push('/')
   }
 
