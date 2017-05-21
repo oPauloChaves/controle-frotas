@@ -56,8 +56,11 @@ function vehiclesFailure(page) {
   }
 }
 
-// This should come from process.env.API_URL
-const API_ROOT = 'http://localhost:8080/api'
+let API_ROOT = 'https://enigmatic-retreat-38913.herokuapp.com/api'
+if (process.env.NODE_ENV !== 'production') {
+  API_ROOT = 'http://localhost:8080/api'
+}
+
 function fetchVehicles(page) {
   const url = `${API_ROOT}/vehicles/?page=${page}`
   return callApi(url, null, vehiclesRequest(page), vehiclesSuccess(page), vehiclesFailure(page))
