@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import './Home.css'
+import Table from 'react-bootstrap/lib/Table'
 
 const Row = ({ placa, modelo, marca, imagem, combustivel, valor }) => (
   <tr>
@@ -46,7 +46,7 @@ class Home extends Component {
         </div>
         <div className="row">
           <div className="col-md-12">
-            <table className="app-table">
+            <Table bordered hover responsive>
               <thead>
                 <TableHeader />
               </thead>
@@ -55,7 +55,7 @@ class Home extends Component {
                   <Row key={vehicles[i].placa} {...vehicles[i]} />
                 )}
               </tbody>
-            </table>
+            </Table>
           </div>
         </div>
       </div>
