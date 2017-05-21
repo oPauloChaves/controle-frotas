@@ -1,32 +1,24 @@
 import React from 'react'
-import {
-  HashRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-import './App.css'
+import { HashRouter as Router, Route } from 'react-router-dom'
+import Grid from 'react-bootstrap/lib/Grid'
+import Row from 'react-bootstrap/lib/Row'
+import Col from 'react-bootstrap/lib/Col'
+import Header from './Header'
 import HomePage from './containers/Home'
-import AboutPage from './containers/About'
 import VehicleForm from './containers/Vehicle/Form'
 
 const App = () => (
   <Router>
-    <div className="container">
-      <div className="row">
-        <div className="col-md-offset-1 col-md-10 App-header">
-          <div>
-            <h1><Link to="/">ContaAzul</Link></h1>
-          </div>
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col-md-offset-1 col-md-10">
-          <Route exact path="/" component={HomePage}/>
-          <Route path="/carros/novo" component={VehicleForm}/>
-          <Route path="/sobre" component={AboutPage}/>
-        </div>
-      </div>
+    <div>
+      <Header />
+      <Grid>
+        <Row>
+          <Col mdOffset={1} md={10}>
+            <Route exact path="/" component={HomePage}/>
+            <Route path="/carros/novo" component={VehicleForm}/>
+          </Col>
+        </Row>
+      </Grid>
     </div>
   </Router>
 )
