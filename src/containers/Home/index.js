@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Row from 'react-bootstrap/lib/Row'
+import Col from 'react-bootstrap/lib/Col'
 import Table from 'react-bootstrap/lib/Table'
 import FormActions from './FormActions'
+import Pagination from '../../Pagination'
 
-const Row = ({ placa, modelo, marca, imagem, combustivel, valor }) => (
+const RowItem = ({ placa, modelo, marca, imagem, combustivel, valor }) => (
   <tr>
     <td><input type="checkbox"/></td>
     <td>{placa}</td>
@@ -38,20 +41,27 @@ class Home extends Component {
     return (
       <div>
         <FormActions />
-        <div className="row">
-          <div className="col-md-12">
+        <Row>
+          <Col md={12}>
             <Table bordered hover responsive>
               <thead>
                 <TableHeader />
               </thead>
               <tbody>
                 {Object.keys(vehicles).map(i =>
-                  <Row key={vehicles[i].placa} {...vehicles[i]} />
+                  <RowItem key={vehicles[i].placa} {...vehicles[i]} />
                 )}
               </tbody>
             </Table>
-          </div>
-        </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <div className="text-center">
+              <Pagination />
+            </div>
+          </Col>
+        </Row>
       </div>
     )
   }
