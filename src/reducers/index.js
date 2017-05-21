@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
-import vehicles from './vehicles'
+import { selectedVehiclesPage, vehiclesByPage } from './vehicles'
 
 export default combineReducers({
-  vehicles
+  selectedVehiclesPage,
+  vehiclesByPage
 })
 
