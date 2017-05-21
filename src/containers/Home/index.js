@@ -15,7 +15,7 @@ const RowItem = ({ placa, modelo, marca, imagem, combustivel, valor }) => (
     <td>{placa}</td>
     <td>{modelo}</td>
     <td>{marca}</td>
-    <td>{imagem === null ?
+    <td>{!imagem ?
       <span>Sem foto</span> :
       <a href={imagem} target="_blank">Foto</a>
     }</td>
@@ -38,43 +38,32 @@ const TableHeader = () => (
 
 class VehiclesPage extends Component {
   constructor(props) {
-    super(props);
-    this.handleNextPageClick = this.handleNextPageClick.bind(this);
-    this.handlePreviousPageClick = this.handlePreviousPageClick.bind(this);
-    // this.handleRefreshClick = this.handleRefreshClick.bind(this);
+    super(props)
+    this.handleChangePageClick = this.handleChangePageClick.bind(this)
   }
 
   componentDidMount() {
-    const { dispatch, page } = this.props;
-    dispatch(fetchVehiclesIfNeeded(page));
+    const { dispatch, page } = this.props
+    dispatch(fetchVehiclesIfNeeded(page))
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.page !== this.props.page) {
-      const { dispatch, page } = nextProps;
-      dispatch(fetchVehiclesIfNeeded(page));
+      const { dispatch, page } = nextProps
+      dispatch(fetchVehiclesIfNeeded(page))
     }
   }
 
-  handleNextPageClick(e) {
-    e.preventDefault();
-    const { page, vehicles } = this.props;
+  handleChangePageClick(selectedPage) {
+    const { vehicles, dispatch } = this.props
     if (vehicles.length > 0) {
-      // go to next page only if more vehicles may be available
-      this.props.dispatch(selectVehiclesPage(page + 1));
-    }
-  }
-
-  handlePreviousPageClick(e) {
-    e.preventDefault();
-    const page = this.props.page;
-    if (page > 1) {
-      this.props.dispatch(selectVehiclesPage(page - 1));
+      // go to next|prev page only if more vehicles may be available
+      dispatch(selectVehiclesPage(selectedPage))
     }
   }
 
   render() {
-    const { page, error, vehicles, isFetching } = this.props;
+    const { page, error, vehicles, isFetching, totalCount } = this.props
 
     return (
       <div>
@@ -110,7 +99,11 @@ class VehiclesPage extends Component {
             <Row>
               <Col md={12}>
                 <div className="text-center">
-                  <Pagination />
+                  <Pagination
+                    onChangePage={this.handleChangePageClick}
+                    totalCount={totalCount}
+                    activePage={page}
+                  />
                 </div>
               </Col>
             </Row>
@@ -122,8 +115,8 @@ class VehiclesPage extends Component {
 }
 
 function mapStateToProps(state) {
-  const { selectedVehiclesPage, vehiclesByPage } = state;
-  const page = selectedVehiclesPage || 1;
+  const { selectedVehiclesPage, vehiclesByPage } = state
+  const page = selectedVehiclesPage || 1
 
   if (!vehiclesByPage || !vehiclesByPage[page]) {
     return {
@@ -133,7 +126,7 @@ function mapStateToProps(state) {
       totalCount: 0,
       vehicles: [],
       error: null,
-    };
+    }
   }
 
   return {
@@ -143,7 +136,7 @@ function mapStateToProps(state) {
     didInvalidate: vehiclesByPage[page].didInvalidate,
     totalCount: vehiclesByPage[page].totalCount,
     vehicles: vehiclesByPage[page].vehicles,
-  };
+  }
 }
 
-export default connect(mapStateToProps)(VehiclesPage);
+export default connect(mapStateToProps)(VehiclesPage)
