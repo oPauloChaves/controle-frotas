@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Pagination from 'react-bootstrap/lib/Pagination'
 
 const BasicPagination = ({ totalCount, activePage, onChangePage }) => {

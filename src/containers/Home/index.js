@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import Row from 'react-bootstrap/lib/Row'
 import Col from 'react-bootstrap/lib/Col'
 import Table from 'react-bootstrap/lib/Table'
@@ -8,7 +7,17 @@ import FormActions from './FormActions'
 import Pagination from '../../Pagination'
 import './Home.css'
 
-import { invalidateVehiclesPage, selectVehiclesPage, fetchVehiclesIfNeeded } from '../../actions/vehicles'
+import {
+  invalidateVehiclesPage,
+  selectVehiclesPage,
+  fetchVehiclesIfNeeded,
+  searchVehicles
+} from '../../actions/vehicles'
+
+function toReal(valor) {
+  valor = parseFloat(valor);
+  return valor.toLocaleString('pt', { minimumFractionDigits: 2 })
+}
 
 const RowItem = ({ placa, modelo, marca, imagem, combustivel, valor }) => (
   <tr>
@@ -18,10 +27,10 @@ const RowItem = ({ placa, modelo, marca, imagem, combustivel, valor }) => (
     <td>{marca}</td>
     <td>{!imagem ?
       <span>Sem foto</span> :
-      <a href={imagem} target="_blank">Foto</a>
+      <a href={imagem} target="_blank" rel="noopener noreferrer">Foto</a>
     }</td>
     <td>{combustivel}</td>
-    <td>{valor}</td>
+    <td>{toReal(valor)}</td>
   </tr>
 )
 
@@ -40,7 +49,12 @@ const TableHeader = () => (
 class VehiclesPage extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      search: ''
+    }
     this.handleChangePageClick = this.handleChangePageClick.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
+    this.handleSearchInputChange = this.handleSearchInputChange.bind(this)
   }
 
   componentDidMount() {
@@ -65,21 +79,41 @@ class VehiclesPage extends Component {
     }
   }
 
+  handleSearchInputChange(e) {
+    this.setState({
+      search: e.target.value
+    })
+  }
+
+  handleSearch(e) {
+    const { dispatch, isFetching } = this.props
+    if (e.keyCode === undefined || e.keyCode === 13) {
+      if (!isFetching) {
+        dispatch(selectVehiclesPage(1))
+        dispatch(searchVehicles(this.state.search.trim()))
+      }
+    }
+  }
+
   render() {
     const { page, error, vehicles, isFetching, totalCount } = this.props
 
     return (
       <div className="AppList">
-        <FormActions />
+        <FormActions
+          handleSearch={this.handleSearch}
+          handleSearchInputChange={this.handleSearchInputChange}
+          search={this.state.search}
+        />
 
         {error &&
           <div className="alert alert-danger">
-            {error.message || 'Unknown errors.'}
+            {error.message || 'Houve um erro no servidor'}
           </div>
         }
 
         {!isFetching && vehicles.length === 0 &&
-          <div className="alert alert-warning">Oops, nothing to show.</div>
+          <div className="alert alert-warning">Oops, nehum registro foi encontrado</div>
         }
 
         <div className="AppAreaTable">

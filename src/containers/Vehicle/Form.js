@@ -42,7 +42,7 @@ class Form extends Component {
     let value = this.state[input].value.trim()
     let validationState = msg ? 'error': null
 
-    if (input === 'placa' && !/\w{3}\-\d{4}$/.test(value)) {
+    if (input === 'placa' && !/\w{3}-\d{4}$/.test(value)) {
       validationState = 'error'
     } else if ((input === 'modelo' || input === 'marca') && value === '') {
       validationState = 'error'

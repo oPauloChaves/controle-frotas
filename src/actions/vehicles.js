@@ -88,6 +88,11 @@ function fetchVehicles(page) {
   return callApi(url, null, vehiclesRequest(page), vehiclesSuccess(page), vehiclesFailure(page))
 }
 
+export function searchVehicles(q) {
+  const url = `${API_ROOT}/vehicles/?page=1&q=${q}`
+  return callApi(url, null, vehiclesRequest(1), vehiclesSuccess(1), vehiclesFailure(1))
+}
+
 function shouldFetchVehicles(state, page) {
   // Check cache first
   const vehicles = state.vehiclesByPage[page]

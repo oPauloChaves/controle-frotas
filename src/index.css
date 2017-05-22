@@ -12,7 +12,9 @@ body {
   background-color: #0086E7;
 }
 
-.navbar-default .navbar-brand {
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:visited {
   color: #fff;
 }
 
