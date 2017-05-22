@@ -97,3 +97,17 @@ body {
     font-size: .85em;
   }
 }
+
+/* pagination */
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    z-index: 3;
+    color: #44637c;
+    cursor: default;
+    background-color: #D5E8FB;
+    border-color: #82c7f5;
+}
