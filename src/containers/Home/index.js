@@ -7,7 +7,7 @@ import Table from 'react-bootstrap/lib/Table'
 import FormActions from './FormActions'
 import Pagination from '../../Pagination'
 
-import { /* invalidateVehiclesPage, */ selectVehiclesPage, fetchVehiclesIfNeeded } from '../../actions/vehicles'
+import { invalidateVehiclesPage, selectVehiclesPage, fetchVehiclesIfNeeded } from '../../actions/vehicles'
 
 const RowItem = ({ placa, modelo, marca, imagem, combustivel, valor }) => (
   <tr>
@@ -50,6 +50,8 @@ class VehiclesPage extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.page !== this.props.page) {
       const { dispatch, page } = nextProps
+      // force request on every page change
+      dispatch(invalidateVehiclesPage(page))
       dispatch(fetchVehiclesIfNeeded(page))
     }
   }

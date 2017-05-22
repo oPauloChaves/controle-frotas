@@ -47,6 +47,12 @@ function vehicles(state = {
         didInvalidate: false,
         error: action.error,
       });
+    case VEHICLES_ADD:
+      return Object.assign({}, state, {
+        isFetching: false,
+        didInvalidate: true,
+        error: null,
+      });
     default:
       return state;
   }
@@ -58,6 +64,7 @@ export function vehiclesByPage(state = { }, action) {
     case VEHICLES_REQUEST:
     case VEHICLES_SUCCESS:
     case VEHICLES_FAILURE:
+    case VEHICLES_ADD:
       return Object.assign({}, state, {
         [action.page]: vehicles(state[action.page], action)
       });

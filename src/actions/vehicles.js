@@ -49,10 +49,11 @@ function vehiclesSuccess(page) {
   }
 }
 
-function vehiclesAddSuccess() {
+function vehiclesAddSuccess(page) {
   return vehicle => {
     return {
       type: VEHICLES_ADD,
+      page,
       vehicle
     }
   }
@@ -79,7 +80,7 @@ export function addVehicle(vehicle) {
     },
     body: JSON.stringify(vehicle)
   }
-  return callApi(url, config, vehiclesRequest(1), vehiclesAddSuccess(), vehiclesFailure(1))
+  return callApi(url, config, vehiclesRequest(1), vehiclesAddSuccess(1), vehiclesFailure(1))
 }
 
 function fetchVehicles(page) {
