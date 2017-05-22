@@ -32,10 +32,10 @@ class FormActions extends Component {
   render() {
     return (
       <Row>
-        <Col md={2}>
-          <Button href="#/carros/novo" bsStyle="success">Novo Carro</Button>
+        <Col xs={5} sm={3} md={2}>
+          <Button href="#/carros/novo" bsStyle="success" block>Novo Carro</Button>
         </Col>
-        <Col mdOffset={7} md={3}>
+        <Col xs={7} smOffset={5} sm={4} mdOffset={7} md={3}>
           <FormGroup>
             <InputGroup>
               <FormControl
