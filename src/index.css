@@ -42,31 +42,38 @@ body {
   font-family: proximanova-semibold;
 }
 
-.table-bordered>thead>tr>th,
-.table-bordered>tbody>tr>td {
-  border: none;
+.table {
+  sborder: 1px solid #ddd;
+}
+
+.table>thead>tr>th,
+.table>tbody>tr>td {
   border-bottom: 1px solid #ddd;
 }
 
-.table-bordered>thead>tr>th {
+.table>thead>tr>th {
   font-family: proximanova-semibold;
   vertical-align: bottom;
   background-color: #F8FAFC;
 }
 
-.table-bordered>tbody>tr>td {
+.table>tbody>tr>td {
   background-color: #FFFFFF;
   padding: 12px 8px;
 }
 
-.table-bordered>thead>tr>th:nth-child(1),
-.table-bordered>tbody>tr>td:nth-child(1) {
+#AppTable > tbody > tr:hover > td {
+  background-color: #D5E8FB;
+}
+
+.table>thead>tr>th:nth-child(1),
+.table>tbody>tr>td:nth-child(1) {
   width: 20px;
   margin-right: 5px;
 }
 
-.table-bordered>thead>tr>th:last-of-type,
-.table-bordered>tbody>tr>td:last-of-type {
+.table>thead>tr>th:last-of-type,
+.table>tbody>tr>td:last-of-type {
   text-align: right;
   padding-right: 40px;
 }

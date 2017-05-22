@@ -132,7 +132,7 @@ class VehiclesPage extends Component {
             <div>
               <Row style={{ opacity: isFetching ? 0.5 : 1 }}>
                 <Col md={12}>
-                  <Table bordered hover responsive>
+                  <Table id="AppTable" hover responsive>
                     <thead>
                       <TableHeader />
                     </thead>
