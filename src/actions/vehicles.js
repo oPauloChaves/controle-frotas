@@ -9,6 +9,11 @@ export const VEHICLES_SUCCESS = 'VEHICLES_SUCCESS'
 export const VEHICLES_FAILURE = 'VEHICLES_FAILURE'
 export const VEHICLES_ADD = 'VEHICLES_ADD'
 
+let API_ROOT = 'https://enigmatic-retreat-38913.herokuapp.com/api'
+if (process.env.NODE_ENV !== 'production') {
+  API_ROOT = 'http://localhost:8080/api'
+}
+
 export function selectVehiclesPage(page) {
   return {
     type: SELECT_VEHICLES_PAGE,
@@ -44,6 +49,15 @@ function vehiclesSuccess(page) {
   }
 }
 
+function vehiclesAddSuccess() {
+  return vehicle => {
+    return {
+      type: VEHICLES_ADD,
+      vehicle
+    }
+  }
+}
+
 // This is a curried function that takes page as argument,
 // and expects error as argument to be passed upon API call failure.
 function vehiclesFailure(page) {
@@ -56,9 +70,16 @@ function vehiclesFailure(page) {
   }
 }
 
-let API_ROOT = 'https://enigmatic-retreat-38913.herokuapp.com/api'
-if (process.env.NODE_ENV !== 'production') {
-  API_ROOT = 'http://localhost:8080/api'
+export function addVehicle(vehicle) {
+  const url = `${API_ROOT}/vehicles`
+  const config = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(vehicle)
+  }
+  return callApi(url, config, vehiclesRequest(1), vehiclesAddSuccess(), vehiclesFailure(1))
 }
 
 function fetchVehicles(page) {

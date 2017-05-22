@@ -10,6 +10,23 @@ import FormControl from 'react-bootstrap/lib/FormControl'
 class FormActions extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      search: ''
+    }
+    this.handleSearch = this.handleSearch.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
+  }
+
+  handleSearch(e) {
+    if (e.keyCode === undefined || e.keyCode === 13) {
+      console.log(`search: ${this.state.search}`)
+    }
+  }
+
+  handleInputChange(e) {
+    this.setState({
+      search: e.target.value
+    })
   }
 
   render() {
@@ -21,9 +38,15 @@ class FormActions extends Component {
         <Col mdOffset={7} md={3}>
           <FormGroup>
             <InputGroup>
-              <FormControl type="text" placeholder="Pesquisar" />
+              <FormControl
+                type="text"
+                placeholder="Pesquisar"
+                value={this.state.value}
+                onChange={this.handleInputChange}
+                onKeyUp={this.handleSearch}
+              />
               <InputGroup.Button>
-                <Button><Glyphicon glyph="search" /></Button>
+                <Button onClick={this.handleSearch}><Glyphicon glyph="search" /></Button>
               </InputGroup.Button>
             </InputGroup>
           </FormGroup>
