@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/lib/Col'
 import Table from 'react-bootstrap/lib/Table'
 import FormActions from './FormActions'
 import Pagination from '../../Pagination'
+import './Home.css'
 
 import { invalidateVehiclesPage, selectVehiclesPage, fetchVehiclesIfNeeded } from '../../actions/vehicles'
 
@@ -71,8 +72,7 @@ class VehiclesPage extends Component {
       <div className="AppList">
         <FormActions />
 
-        {
-          error &&
+        {error &&
           <div className="alert alert-danger">
             {error.message || 'Unknown errors.'}
           </div>
@@ -82,35 +82,48 @@ class VehiclesPage extends Component {
           <div className="alert alert-warning">Oops, nothing to show.</div>
         }
 
-        {vehicles.length > 0 &&
-          <div className="AppAreaTable">
-            <Row style={{ opacity: isFetching ? 0.5 : 1 }}>
-              <Col md={12}>
-                <Table bordered hover responsive>
-                  <thead>
-                    <TableHeader />
-                  </thead>
-                  <tbody>
-                    {vehicles.map(vehicle =>
-                      <RowItem key={vehicle.placa} {...vehicle} />
-                    )}
-                  </tbody>
-                </Table>
-              </Col>
-            </Row>
+        <div className="AppAreaTable">
+          {isFetching &&
             <Row>
-              <Col md={12}>
-                <div className="text-center">
-                  <Pagination
-                    onChangePage={this.handleChangePageClick}
-                    totalCount={totalCount}
-                    activePage={page}
-                  />
-                </div>
-              </Col>
+              <div className="spinner">
+                <div className="rect1"></div>
+                <div className="rect2"></div>
+                <div className="rect3"></div>
+                <div className="rect4"></div>
+                <div className="rect5"></div>
+              </div>
             </Row>
-          </div>
-        }
+          }
+          {!isFetching && vehicles.length > 0 &&
+            <div>
+              <Row style={{ opacity: isFetching ? 0.5 : 1 }}>
+                <Col md={12}>
+                  <Table bordered hover responsive>
+                    <thead>
+                      <TableHeader />
+                    </thead>
+                    <tbody>
+                      {vehicles.map(vehicle =>
+                        <RowItem key={vehicle.placa} {...vehicle} />
+                      )}
+                    </tbody>
+                  </Table>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12}>
+                  <div className="text-center">
+                    <Pagination
+                      onChangePage={this.handleChangePageClick}
+                      totalCount={totalCount}
+                      activePage={page}
+                    />
+                  </div>
+                </Col>
+              </Row>
+            </div>
+          }
+        </div>
       </div>
     )
   }
