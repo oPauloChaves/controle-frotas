@@ -9,7 +9,7 @@ import VehicleForm from './containers/Vehicle/Form'
 
 const App = () => (
   <Router>
-    <div>
+    <div className="App">
       <Header />
       <Grid>
         <Row>

@@ -1,0 +1,90 @@
+body {
+  background-color: #F1F4F9;
+  font-family: proximanova-light;
+}
+
+.AppHeader {
+  background-color: transparent;
+  border: none;
+}
+
+.AppHeader > div.container {
+  background-color: #0086E7;
+}
+
+.navbar-default .navbar-brand {
+  color: #fff;
+}
+
+.AppFormAction {
+  margin-bottom: 5px;
+}
+
+.AppFormAction .form-control {
+  padding: 20px;
+}
+
+.AppList {
+  font-family: proximanova-regular;
+  color: #44637c;
+}
+
+.AppFormAction .input-group-btn > button {
+  padding: 10px 13px;
+  background-color: #F0F4F9;
+}
+
+.AppBtnNew {
+  padding: 10px;
+  width: 140px;
+  font-family: proximanova-semibold;
+}
+
+.table-bordered>thead>tr>th,
+.table-bordered>tbody>tr>td {
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-bordered>thead>tr>th {
+  font-family: proximanova-semibold;
+  vertical-align: bottom;
+  background-color: #F8FAFC;
+}
+
+.table-bordered>tbody>tr>td {
+  background-color: #FFFFFF;
+  padding: 12px 8px;
+}
+
+.table-bordered>thead>tr>th:nth-child(1),
+.table-bordered>tbody>tr>td:nth-child(1) {
+  width: 20px;
+  margin-right: 5px;
+}
+
+.table-bordered>thead>tr>th:last-of-type,
+.table-bordered>tbody>tr>td:last-of-type {
+  text-align: right;
+  padding-right: 40px;
+}
+
+.pagination>li>a {
+  padding: 10px 15px;
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .AppHeader > div.container {
+    width: 1024px;
+  }
+  div.ColHeader {
+    width: 100%;
+  }
+  div.ColHeader .navbar-brand {
+    padding-left: 52px;
+  }
+  .icon-logo_contaazul {
+    font-size: .85em;
+  }
+}

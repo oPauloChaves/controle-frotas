@@ -8,12 +8,12 @@ import Col from 'react-bootstrap/lib/Col'
 
 const Header = () => (
   <Grid>
-    <Navbar>
+    <Navbar className="AppHeader">
       <Row>
-        <Col mdOffset={1} md={10}>
+        <Col className="ColHeader">
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to="/">ContaAzul</Link>
+              <Link to="/"><i className="icon-logo_contaazul"></i></Link>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav></Nav>

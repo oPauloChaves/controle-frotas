@@ -68,7 +68,7 @@ class VehiclesPage extends Component {
     const { page, error, vehicles, isFetching, totalCount } = this.props
 
     return (
-      <div>
+      <div className="AppList">
         <FormActions />
 
         {
@@ -83,7 +83,7 @@ class VehiclesPage extends Component {
         }
 
         {vehicles.length > 0 &&
-          <div>
+          <div className="AppAreaTable">
             <Row style={{ opacity: isFetching ? 0.5 : 1 }}>
               <Col md={12}>
                 <Table bordered hover responsive>
